@@ -1,0 +1,11 @@
+@keyframes grow-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 0);
+  }
+}

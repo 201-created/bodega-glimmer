@@ -1,0 +1,30 @@
+.modal {
+  display: block;
+  font-size: $font-size-sm;
+
+  &.show {
+    overflow: auto;
+  }
+}
+
+.modal-header {
+  border-radius: $border-radius $border-radius 0 0;
+}
+
+.modal-title {
+  font-size: $font-size-h4;
+
+  @include media-breakpoint-up(sm) {
+    font-size: $font-size-h3;
+  }
+}
+
+.modal-body {
+  h2 {
+    font-size: $font-size-h5;
+  }
+
+  dl {
+    border-top: 1px solid $mcolor-grey-300;
+  }
+}

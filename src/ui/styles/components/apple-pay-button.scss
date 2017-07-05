@@ -1,0 +1,28 @@
+.apple-pay-button {
+  display: none;
+  background-color: black;
+  background-image: -webkit-named-image(apple-pay-logo-white);
+  background-size: 100% 100%;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 44px;
+  padding: 10px 0;
+  border: 0;
+  border-radius: $btn-border-radius-sm;
+  cursor: pointer;
+}
+
+.apple-pay-button.is-available {
+  display: block;
+}
+
+.apple-pay-button__success {
+  border: 2px solid green;
+  color: green;
+}
+
+.apple-pay-button.disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

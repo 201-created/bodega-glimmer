@@ -1,0 +1,36 @@
+.bodega-cart__item {
+  background: top center no-repeat;
+  background-size: contain; // Safari doesn't like this in shorthand property
+  height: 70px;
+  animation: grow-in .3s ease-in-out 0s;
+
+  @include media-breakpoint-up(md) {
+    height: 120px;
+  }
+}
+
+.bodega-cart__item-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.5rem;
+
+  .btn-group {
+    background: $btn-success-bg;
+    color: white;
+    border-radius: $btn-border-radius-sm;
+    @include material-shadow(1);
+  }
+
+  .btn {
+    font-size: $font-size-xs;
+  }
+}
+
+.bodega-cart__total {
+  font-size: $font-size-sm;
+
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-base;
+  }
+}

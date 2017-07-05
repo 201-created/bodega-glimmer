@@ -1,0 +1,36 @@
+.items-slider {
+  .item {
+    height: 100%;
+    width: 100%;
+  }
+
+  .flickity-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .flickity-page-dots {
+    bottom: $spacer-y;
+
+    @include media-breakpoint-up(md) {
+      bottom: $spacer-y * 2;
+    }
+  }
+
+  .flickity-prev-next-button {
+    background-color: transparent;
+
+    &.previous {
+      left: 0;
+    }
+
+    &.next {
+      right: 0;
+    }
+  }
+
+}
+

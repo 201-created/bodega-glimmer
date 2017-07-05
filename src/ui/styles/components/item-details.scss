@@ -1,0 +1,21 @@
+.item-details {
+  border: 0.125em;
+  padding: 0.125em;
+  margin: 0 1em;
+  border-radius: .5em;
+}
+
+.item-details__name {
+  float: left;
+  font-size: 1.25em;
+  margin: 0;
+  padding-left: 10px;
+  color: $mcolor-cyan-700;
+}
+
+.item-details__price {
+  float: right;
+  line-height: 1.75;
+  padding-right: 10px;
+  color: $mcolor-cyan-700;
+}

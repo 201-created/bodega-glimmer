@@ -1,0 +1,16 @@
+<div>
+  <article class="show-item h-100"
+            data-test-item={{@item.id}}
+            data-item-id={{@item.id}}>
+
+    <h1 class='sr-only'>{{@item.name}}</h1>
+
+    <div class='show-item__image' style={{{concat 'background-image: url(' @item.url ');'}}}>
+      <img alt={{@item.name}} src={{@item.url}} class='d-none'>
+    </div>
+
+    <strong class='show-item__price text-center dollars'>{{priceInDollars}}</strong>
+    <button onclick={{action addToCart}} class='show-item__add-to-cart btn btn-large btn-success' data-test-add-to-cart>Add to Cart</button>
+
+  </article>
+</div>

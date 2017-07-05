@@ -1,0 +1,34 @@
+<div>
+  <div class='sticker-canvas row mx-0'>
+    {{#each @order.lineItems key='itemId' as |lineItem|}}
+      <article class='bodega-cart__item col col-4 col-md-12 my-md-3 text-center' style={{{concat 'background-image: url(' lineItem.url ');'}}}>
+        <h1 class='sr-only'>{{lineItem.name}}</h1>
+        <footer class='bodega-cart__item-footer'>
+          <div class='btn-group btn-group-sm' role='group'>
+            <button onclick={{action @decrement lineItem}} class='btn btn-secondary'>-</button>
+            <span class='btn btn-disabled'>{{lineItem.quantity}}</span>
+            <button onclick={{action @increment lineItem}} class='btn btn-secondary'>+</button>
+          </div>
+        </footer>
+      </article>
+    {{/each}}
+  </div>
+
+  <div class='bodega-cart__total row no-gutters pt-1 px-2 pt-md-3'>
+    <div class='col'>
+      <strong>Total:</strong>
+      <span data-test-total-quantity>{{@order.quantity}}</span>
+    </div>
+    <div class='col dollars text-right' data-test-total-price>{{price-in-dollars @order.price}}</div>
+  </div>
+  <div class="row no-gutters">
+    {{#if applePayIsAvailable}}
+      <div class="col col-6 pr-1">
+        {{!apple-pay-button item=@order disabled=(eq @order.quantity 0)}}
+      </div>
+    {{/if}}
+    <div class="col col-6 pl-1">
+      {{!stripe-checkout item=@order disabled=(eq @order.quantity 0)}}
+    </div>
+  </div>
+</div>

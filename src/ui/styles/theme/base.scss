@@ -1,0 +1,91 @@
+.viewport {
+  @include gradient-y($mcolor-grey-100, $mcolor-grey-200);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent; /* For some Android devices */
+}
+
+.container-scroll,
+.container-no-scroll-y {
+  height: 100%;
+}
+.container-scroll {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container-no-scroll-y {
+  overflow-y: hidden;
+}
+
+.font-size-xs {
+  font-size: $font-size-xs;
+}
+
+.section-title {
+  font-size: $font-size-h4;
+  font-weight: bold;
+  color: $mcolor-blue-grey-900;
+  padding-bottom: $spacer-y;
+  border-bottom: .25rem solid $mcolor-blue-grey-500;
+
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-h2;
+  }
+}
+
+.sticker-canvas {
+  background-color: rgba($mcolor-blue-grey-100, 0.1);
+  border: .25rem rgba($mcolor-blue-grey-200, 0.5) dashed;
+  border-radius: 1rem;
+}
+
+.dollars {
+  &:before {
+    content: '$';
+    color: $mcolor-blue-grey-500;
+    margin-right: .125em;
+  }
+}
+
+.colophon {
+  position: absolute;
+  left: $spacer-x * .5;
+  bottom: $spacer-y * .25;
+  width: $spacer-x * 4;
+
+  .svg-logo {
+    fill: $mcolor-blue-grey-200;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    .svg-logo {
+      fill: $mcolor-blue-grey-500;
+    }
+
+    .svg-logo__201 {
+      fill: $mcolor-light-green-600;
+    }
+  }
+
+  &:active {
+    text-decoration: none;
+
+    .svg-logo,
+    .svg-logo__201 {
+      fill: white;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    left: $spacer-x;
+    bottom: $spacer-y;
+    width: $spacer-x * 5;
+  }
+}

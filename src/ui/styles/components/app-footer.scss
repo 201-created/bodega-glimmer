@@ -1,0 +1,32 @@
+.app-footer {
+  @include gradient-y(white, $mcolor-grey-100);
+  @include material-shadow(1);
+  height: 155px;
+  max-height: 155px; // Cover flex bugs
+  transition: all .2s ease-in-out;
+
+  &.is-empty {
+    height: 0;
+    max-height: 0; // Cover flex bugs
+  }
+
+  .sticker-canvas {
+    min-height: $spacer-y * 4;
+  }
+
+  @include media-breakpoint-up(sm) {
+    height: auto;
+    max-height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    &.is-empty {
+      max-width: 0;
+    }
+  }
+}
+
+.stripe-checkout__button {
+  cursor: pointer;
+  line-height: 1.6;
+}

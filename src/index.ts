@@ -14,6 +14,12 @@ app.registerInitializer({
   }
 });
 
+app.registerInitializer({
+  initialize(registry) {
+    registry.registerInjection(`component`, `cart`, `service:cart`);
+  }
+});
+
 app.renderComponent('bodega-glimmer', containerElement, null);
 
 app.boot();

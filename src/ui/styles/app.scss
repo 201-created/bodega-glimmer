@@ -1,3 +1,17 @@
-h1 {
-  color: #444;
-}
+// Theme
+@import "theme";
+
+// Pages
+@import "index";
+
+// Components
+@import "components/svg-logo";
+@import "components/app-header";
+@import "components/app-footer";
+@import "components/modal-message";
+@import "components/items-slider";
+@import "components/show-item";
+@import "components/apple-pay-button";
+@import "components/back-button";
+@import "components/item-details";
+@import "components/bodega-cart";

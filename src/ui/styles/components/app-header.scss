@@ -1,0 +1,34 @@
+.app-header {
+  @include material-shadow(1.5);
+  background-color: $mcolor-blue-grey-900;
+  color: $mcolor-blue-grey-300;
+  z-index: $zindex-fixed;
+
+  a {
+    color: inherit;
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+.navbar-brand {
+  font-size: $font-size-h5;
+  font-weight: 300;
+  margin: 0;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  padding-left: .2em;
+
+  .svg-logo {
+    width: 1.75em;
+    fill: $mcolor-light-green-500;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-h4;
+  }
+}
