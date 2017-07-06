@@ -1,9 +1,24 @@
 import Component from '@glimmer/component';
 
-
 export default class ItemsSlider extends Component {
-  didInsertElement() {
-    new self.Flickity(this.element, {
+  _flickity = null;
+  _flickityScheduled = false;
+
+  flickity() {
+    if (!this._flickityScheduled) {
+      Promise.resolve().then(() => {
+        this._flickityScheduled = false;
+        this._restartFlickity();
+      });
+    }
+    this._flickityScheduled = true;
+  }
+
+  _restartFlickity() {
+    if (this._flickity) {
+      this._flickity.destroy();
+    }
+    this._flickity = new self.Flickity(this.element, {
       contain: true,
       cellSelector: '.item',
       setGallerySize: false,

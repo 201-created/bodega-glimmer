@@ -1,9 +1,29 @@
 import Cart from '../../../services/cart';
-import Component from '@glimmer/component';
+import Component, { tracked } from '@glimmer/component';
 
 export default class BodegaGlimmer extends Component {
   cart: Cart;
 
+  @tracked items = [];
+
+  constructor(options) {
+    super(options);
+    self.fetch('https://api.shop-201.com/api/items').then(result => {
+      return result.json();
+    }).then(payload => {
+      this.items = payload.data.map(item => {
+        return {
+          ...item.attributes,
+          id: item.id
+        }
+      });
+    });
+  }
+
+  /*
+   * The following is dummy development data.
+   */
+  /*
   get items() {
     return [
       {
@@ -20,6 +40,7 @@ export default class BodegaGlimmer extends Component {
       }
     ];
   }
+  */
 
   increment(lineItem) {
     this.cart.increment(lineItem);

@@ -5,9 +5,9 @@
 
   <div class='d-flex flex-column flex-sm-row col no-gutters p-0'>
     <main class='app-body d-flex flex-column col'>
-      <items-slider class='items-slider col p-0'>
-        {{#each items key="@identity" as |item|}}
-          <show-item @item={{item}} class='item'></show-item>
+      <items-slider class='items-slider col p-0' as |flickity|>
+        {{#each items key="id" as |item|}}
+          <show-item @item={{item}} @afterRender={{flickity}} class='item'></show-item>
         {{/each}}
       </items-slider>
 

@@ -11,4 +11,8 @@ export default class ShowItem extends Component {
   addToCart() {
     this.cart.addItem(this.args.item);
   }
+
+  didInsertElement() {
+    this.args.afterRender();
+  }
 }
