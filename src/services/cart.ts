@@ -20,4 +20,12 @@ export default class CartService {
       url: item.url
     });
   }
+
+  increment(lineItem) {
+    this.order = this.order.increment(lineItem);
+  }
+
+  decrement(lineItem) {
+    this.order = this.order.decrement(lineItem);
+  }
 }

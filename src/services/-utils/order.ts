@@ -74,7 +74,6 @@ function buildLineItems(items) {
 }
 
 function lineItemsPrice(lineItems) {
-  debugger;
   return lineItems.reduce((sum, item) => {
     return item.price + sum;
   }, 0);
