@@ -3,24 +3,21 @@ import { tracked } from '@glimmer/component';
 
 export default class OnlineService extends Service {
 
-  _online: () => void;
-  _offline: () => void;
+  _online = () => {
+    this.isOnline = true;
+  };
+  _offline = () => {
+    this.isOnline = false;
+  };
 
   @tracked isOnline = null;
 
-  constructor(...args) {
-    super(...args);
+  constructor(options) {
+    super(options);
 
     this.isOnline = (
       self.navigator ? self.navigator.onLine : true
     );
-
-    this._online = () => {
-      this.isOnline = true;
-    };
-    this._offline = () => {
-      this.isOnline = false;
-    };
 
     self.addEventListener('online', this._online);
     self.addEventListener('offline', this._offline);
@@ -29,6 +26,5 @@ export default class OnlineService extends Service {
   destroy() {
     self.removeEventListener('online', this._online);
     self.removeEventListener('offline', this._offline);
-    super.destroy();
   }
-});
+}

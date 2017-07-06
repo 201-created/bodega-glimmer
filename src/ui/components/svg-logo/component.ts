@@ -1,11 +1,14 @@
 import Component, { tracked }  from '@glimmer/component';
 
 export default class SvgLogo extends Component {
-  logoVariant = 'horizontal'; // Also 'vertical' or 'badge'
-
   @tracked('args.logoVariant')
+  get logoVariant() {
+   return this.args.logoVariant || 'horizontal'; // Also 'vertical' or 'badge'
+  }
+
+  @tracked('logoVariant')
   get viewBox() {
-    let style = this.args.logoVariant;
+    let style = this.logoVariant;
 
     switch (style) {
       case 'vertical':
@@ -17,12 +20,12 @@ export default class SvgLogo extends Component {
     }
   }
 
-  @tracked('args.logoVariant')
-  get isHorizontal() { return this.args.logoVariant === 'horizontal'; }
+  @tracked('logoVariant')
+  get isHorizontal() { return this.logoVariant === 'horizontal'; }
 
-  @tracked('args.logoVariant')
-  get isVertical() { return this.args.logoVariant === 'vertical'; }
+  @tracked('logoVariant')
+  get isVertical() { return this.logoVariant === 'vertical'; }
 
-  @tracked('args.logoVariant')
-  get isBadge() { return this.args.logoVariant === 'badge'; }
+  @tracked('logoVariant')
+  get isBadge() { return this.logoVariant === 'badge'; }
 }

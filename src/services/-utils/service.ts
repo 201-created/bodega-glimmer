@@ -1,7 +1,5 @@
 export default class Service {
 
-  destroy: () => void;
-
   static create(options) {
     return new this(options);
   }
