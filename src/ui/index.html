@@ -3,13 +3,33 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hello Glimmer</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop 201</title>
+
+    <meta name="apple-mobile-web-app-title" content="Shop 201">
+    <meta name="application-name" content="Shop 201">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Shop 201 - A progressive web app build with Glimmer.js">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=no">
 
     {{content-for "head"}}
 
+    <link rel="apple-touch-icon" sizes="60x60" href="{{rootURL}}assets/images/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{rootURL}}assets/images/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{rootURL}}assets/images/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{rootURL}}assets/images/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{rootURL}}assets/images/icons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="{{rootURL}}assets/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{rootURL}}assets/images/icons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{rootURL}}assets/images/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="mask-icon" href="{{rootURL}}assets/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="{{rootURL}}favicon.ico">
+    <meta name="msapplication-config" content="{{rootURL}}assets/images/icons/browserconfig.xml">
+
     <link rel="stylesheet" href="{{rootURL}}app.css">
+    <link rel="manifest" href="{{rootURL}}manifest.json">
 
     {{content-for "head-footer"}}
   </head>
@@ -18,6 +38,8 @@
 
     <div id="app"></div>
     <script src="{{rootURL}}vendor/flickity.pkgd.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
     <script src="{{rootURL}}app.js"></script>
 
     {{content-for "body-footer"}}

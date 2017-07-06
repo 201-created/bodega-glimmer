@@ -24,11 +24,11 @@
   <div class="row no-gutters">
     {{#if applePayIsAvailable}}
       <div class="col col-6 pr-1">
-        {{!apple-pay-button item=@order disabled=(eq @order.quantity 0)}}
+        <apple-pay-button @item={{@order}} @disabled={{eq @order.quantity 0}}></apple-pay-button>
       </div>
     {{/if}}
-    <div class="col col-6 pl-1">
-      {{!stripe-checkout item=@order disabled=(eq @order.quantity 0)}}
+    <div class="col {{inline-if applePayIsAvailable 'col-6 pl-1'}}">
+      <stripe-checkout @item={{@order}} @disabled={{eq @order.quantity 0}}></stripe-checkout>
     </div>
   </div>
 </div>

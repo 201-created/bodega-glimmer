@@ -1,0 +1,8 @@
+<div>
+  <button onclick={{action beginApplePay}}
+          class="apple-pay-button {{if isAvailable "is-available"}} {{if isDisabled 'disabled'}}"
+          disabled={{isDisabled}}
+          title={{title}}
+          data-test-pay>
+  </button>
+</div>

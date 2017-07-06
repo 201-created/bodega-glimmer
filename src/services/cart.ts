@@ -38,4 +38,8 @@ export default class CartService extends Service {
   decrement(lineItem) {
     this.order = this.order.decrement(lineItem);
   }
+
+  clear() {
+    this.order = new Order([]);
+  }
 }
