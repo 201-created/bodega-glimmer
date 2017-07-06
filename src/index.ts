@@ -17,6 +17,7 @@ app.registerInitializer({
 app.registerInitializer({
   initialize(registry) {
     registry.registerInjection(`component`, `cart`, `service:cart`);
+    registry.registerInjection(`service:cart`, `localStorage`, `service:local-storage`);
   }
 });
 
