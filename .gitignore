@@ -1,6 +1,5 @@
 node_modules
 tmp/*
-!tmp/.metadata_never_index
 dist
 tmp/
 .vscode/
