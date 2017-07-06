@@ -10,6 +10,7 @@ export default class ApplePay extends Service {
     if (self.Stripe && self.Stripe.applePay) {
       self.Stripe.applePay.checkAvailability((result) => {
         this.isAvailable = result;
+        this.notify();
       });
     }
   }

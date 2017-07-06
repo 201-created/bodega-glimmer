@@ -1,7 +1,7 @@
 import Component, { tracked }  from '@glimmer/component';
 
 export default class SvgLogo extends Component {
-  @tracked('args.logoVariant')
+  @tracked('args')
   get logoVariant() {
    return this.args.logoVariant || 'horizontal'; // Also 'vertical' or 'badge'
   }

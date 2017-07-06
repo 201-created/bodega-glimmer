@@ -1,9 +1,12 @@
 import Component, { tracked } from '@glimmer/component';
+import Cart from '../../../services/cart';
+import trackService from '../../../utils/tracked';
 
+@trackService('cart')
 export default class ShowItem extends Component {
-  cart: any;
+  cart: Cart;
 
-  @tracked('args.item.price')
+  @tracked('args')
   get priceInDollars() {
     return this.args.item.price / 100;
   }

@@ -3,7 +3,12 @@ import Status from '../../../services/status';
 import Cart from '../../../services/cart';
 import StripeCheckoutService from '../../../services/stripe-checkout';
 import Component, { tracked } from '@glimmer/component';
+import trackService from '../../../utils/tracked';
 
+@trackService('online')
+@trackService('status')
+@trackService('cart')
+@trackService('stripeCheckout')
 export default class StripeCheckout extends Component {
   online: Online;
   status: Status;
@@ -12,16 +17,16 @@ export default class StripeCheckout extends Component {
 
   _handler: any;
 
-  @tracked('online.isOnline', 'args.disabled')
+  @tracked('online', 'args')
   get isDisabled() {
     return !this.online.isOnline || this.args.disabled;
   }
 
-  @tracked('online.isOnline')
+  @tracked('online')
   get title() {
     return this.online.isOnline ?
       'Pay with Credit Card' :
-      'Checkout is not available when you are offline';
+      'Go online to purchase';
   }
 
   _saveCharge(token, addresses) {

@@ -1,6 +1,8 @@
 import Cart from '../../../services/cart';
 import Component, { tracked } from '@glimmer/component';
+import trackService from '../../../utils/tracked';
 
+@trackService('cart')
 export default class BodegaGlimmer extends Component {
   cart: Cart;
 

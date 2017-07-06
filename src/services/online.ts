@@ -5,9 +5,11 @@ export default class OnlineService extends Service {
 
   _online = () => {
     this.isOnline = true;
+    this.notify();
   };
   _offline = () => {
     this.isOnline = false;
+    this.notify();
   };
 
   @tracked isOnline = null;

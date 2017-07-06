@@ -1,11 +1,13 @@
 import Service from './-utils/service';
 import Order from './-utils/order';
 import { tracked } from '@glimmer/component';
+import trackService from '../utils/tracked';
 
+@trackService('localStorage')
 export default class CartService extends Service {
-  localStorage: any;
+  localStorage: Storage;
 
-  _order: any = null;
+  _order: Order = null;
 
   @tracked
   get order() {
@@ -20,6 +22,7 @@ export default class CartService extends Service {
     this._order = value;
     let json = JSON.stringify(value.serialize());
     this.localStorage.order = json;
+    this.notify();
   }
 
   addItem(item) {

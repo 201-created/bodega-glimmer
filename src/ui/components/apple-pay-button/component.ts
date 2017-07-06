@@ -1,10 +1,15 @@
 import Online from '../../../services/online';
+import Status from '../../../services/status';
 import Component, { tracked } from '@glimmer/component';
+import trackService from '../../../utils/tracked';
 
+@trackService('online')
+@trackService('status')
 export default class ApplePayButton extends Component {
   online: Online;
+  status: Status;
 
-  @tracked('online.isOnline', 'args.disabled')
+  @tracked('online', 'args')
   get isDisabled() {
     return !this.online.isOnline || this.args.disabled;
   }
