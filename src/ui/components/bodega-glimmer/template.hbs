@@ -14,7 +14,7 @@
       <a class='colophon' href="https://www.201-created.com/"><span class='sr-only'>201 Created</span><svg-logo></svg-logo></a>
     </main>
 
-    <footer class='app-footer d-flex flex-column col col-sm-5 col-md-4 col-lg-3 {{inline-if (eq cart.order.lineItems.length 0) 'is-empty'}}'>
+    <footer class='app-footer d-flex flex-column col col-sm-5 col-md-4 col-lg-3 {{inline-if cart.isEmpty 'is-empty'}}'>
       <bodega-cart class='col p-1'
                     @order={{cart.order}}
                     @increment={{action increment}}

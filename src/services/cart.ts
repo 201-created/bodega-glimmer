@@ -25,6 +25,11 @@ export default class CartService extends Service {
     this.notify();
   }
 
+  @tracked('order')
+  get isEmpty() {
+    return this.order.isEmpty;
+  }
+
   addItem(item) {
     this.order = this.order.addItem({
       id: item.id,

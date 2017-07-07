@@ -10,5 +10,4 @@ export default class BodegaCart extends Component {
   get applePayIsAvailable() {
     return this.applePay.isAvailable;
   }
-
 }

@@ -15,6 +15,10 @@ export default class Order {
     this.quantity = items.length;
   }
 
+  get isEmpty() {
+    return this.quantity === 0;
+  }
+
   addItem(item) {
     return new Order([...this.items, item]);
   }

@@ -17,9 +17,17 @@ export default class StripeCheckout extends Component {
 
   _handler: any;
 
-  @tracked('online', 'args')
+  /**
+   * This used to track 'online' and 'args', and the bodega-cart would invoke this component
+   * by passing in an arg 'disabled' that was based on whether the cart was empty.
+   * There is a bug with glimmer and properties derived from tracking 'args', though, so
+   * we use the 'cart' service here directly, instead.
+   * See: https://github.com/glimmerjs/glimmer-component/issues/66
+   */
+  @tracked('online', 'cart')
   get isDisabled() {
-    return !this.online.isOnline || this.args.disabled;
+    let isOffline = !this.online.isOnline;
+    return isOffline || this.cart.isEmpty;
   }
 
   @tracked('online')
