@@ -29,6 +29,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Shop 201">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<!--
+  end ember-web-app content
+-->
 
     <link rel="icon" type="image/png" href="{{rootURL}}assets/images/icons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="{{rootURL}}assets/images/icons/android-chrome-192x192.jpg" sizes="192x192">
@@ -42,11 +45,82 @@
   <body>
     {{content-for "body"}}
 
-    <div id="app"></div>
-    <script src="{{rootURL}}vendor/flickity.pkgd.min.js"></script>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script src="{{rootURL}}app.js"></script>
+    <div id="app">
+
+<!--
+  initial pre-JS UI
+-->
+<div class="viewport d-flex flex-column">
+  <header class="app-header navbar navbar-inverted flex-row justify-content-center">
+    <h1 class="navbar-brand mx-1">Shop <span class="sr-only">201</span> <div id="ember322" class="d-inline-block align-middle ember-view"><svg alt="201 Created" viewbox="0 0 209.9 107.6" role="img" class="svg-logo svg-logo--badge">
+  <g class="svg-logo__201">
+      <path d="M110.3,24.5c-7,0-13.5,6.4-13.5,29.9c0,2,0,3.9,0.1,5.7L120,31.8C117.5,26,113.8,24.5,110.3,24.5z"></path>
+      <path d="M99.1,74.1c2.2,6.1,5.8,8.5,11,8.5c6.4,0,13.1-5.7,13.1-29.1c0-3.1-0.1-5.8-0.3-8.3L99.1,74.1z"></path>
+      <path d="M202.3,0H7.6C3.4,0,0,3.4,0,7.6V100c0,4.2,3.4,7.6,7.6,7.6h194.7c4.2,0,7.6-3.4,7.6-7.6V7.6C210,3.4,206.5,0,202.3,0z
+         M75.8,93.7H15v-11c8.7-6.1,41.6-31.2,41.6-47.2c0-8.3-6.5-11-11.3-11c-8.3,0-13,6-13.8,13.5h-16c0-9.2,6.3-26.6,30.5-26.6
+        c12.3,0,27.3,6.1,27.3,23.3c0,16.2-16.1,31-35.5,46.4v0.2c2.6-0.3,5.7-0.7,8.3-0.7h29.6L75.8,93.7L75.8,93.7z M108.9,95.7
+        c-15.6,0-29.6-9-29.6-40c0-33.5,15.6-44.3,32.2-44.3c17.5,0,29.2,14,29.2,42.1C140.6,82.1,125.7,95.7,108.9,95.7z M196.4,93.7h-48
+        V82H164V29.8c-1.4,1.1-2.5,2.2-4,3.2l-11.3,7.4l-3.4-9.9l23.2-17.1h12.3v68.7h15.7v11.6H196.4z"></path>
+  </g>
+  <g class="svg-logo__created">
+<!---->  </g>
+</svg>
+</div></h1>
+  </header>
+
+  <div class="d-flex flex-column flex-sm-row col no-gutters p-0">
+    <main class="app-body d-flex flex-column col">
+      <div id="ember328" class="items-slider col p-0 ember-view">    <article class="show-item h-100">
+      <button class="show-item__add-to-cart btn btn-large btn-success">&nbsp;</button>
+    </article>
+</div>
+      <a href="https://www.201-created.com/" class="colophon"><span class="sr-only">201 Created</span><div id="ember329" class="ember-view"><svg alt="201 Created" viewbox="0 0 790.7 114.6" role="img" class="svg-logo svg-logo--horizontal">
+  <g class="svg-logo__201">
+      <path d="M110.3,31.4c-7,0-13.5,6.4-13.5,29.9c0,2,0,3.9,0.1,5.7L120,38.7C117.5,32.9,113.8,31.4,110.3,31.4z"></path>
+      <path d="M99.1,81c2.2,6.1,5.8,8.5,11,8.5c6.4,0,13.1-5.7,13.1-29.1c0-3.1-0.1-5.8-0.3-8.3L99.1,81z"></path>
+      <path d="M202.3,6.9H7.6C3.4,6.9,0,10.3,0,14.5v92.4c0,4.2,3.4,7.6,7.6,7.6h194.7c4.2,0,7.6-3.4,7.6-7.6V14.5
+        C210,10.3,206.5,6.9,202.3,6.9z M75.8,100.6H15v-11c8.7-6.1,41.6-31.2,41.6-47.2c0-8.3-6.5-11-11.3-11c-8.3,0-13,6-13.8,13.5H15.5
+        c0-9.2,6.3-26.6,30.5-26.6c12.3,0,27.3,6.1,27.3,23.3c0,16.2-16.1,31-35.5,46.4v0.2c2.6-0.3,5.7-0.7,8.3-0.7h29.6V100.6z
+         M108.9,102.6c-15.6,0-29.6-9-29.6-40c0-33.5,15.6-44.3,32.2-44.3c17.5,0,29.2,14,29.2,42.1C140.6,89,125.7,102.6,108.9,102.6z
+         M196.4,100.6h-48V88.9H164V36.7c-1.4,1.1-2.5,2.2-4,3.2l-11.3,7.4l-3.4-9.9l23.2-17.1h12.3v68.7h15.7V100.6z"></path>
+      </g>
+  <g class="svg-logo__created">
+      <path d="M314.6,76.5h18.2l-0.9,31.2c-11,3.8-20.8,5.1-32.9,5.1c-33.8,0-54-20.1-54-51.6c0-27.4,17.6-53,54.9-53
+        c12.9,0,23.5,2.5,33.4,5.9v28.2H315V26.1c-5.1-1.7-9.1-2.3-14.3-2.3c-24.3,0-32.9,17.6-32.9,36.1c0,15.3,6.6,36.4,34.1,36.4
+        c2.9,0,8.2-0.3,11.8-1.4L314.6,76.5z"></path>
+      <path d="M356,50.3h-9.8V35.5h29.3c0,5.2-0.3,10.3-1.3,17.3h0.3c3-12.7,10.1-19.1,21.7-19.1c2.5,0,4.5,0.4,6.6,0.9l-1.3,18.1
+        c-2.2-0.4-4.5-0.7-6.5-0.7c-11,0-18.8,7.5-18.8,19.9v24.4h9.5V111h-38V96.3h8.2V50.3z"></path>
+      <path d="M428.6,77.8c0.6,12,9.8,19.4,24,19.4c9.7,0,15.9-1.6,24.4-5.2l-1,16c-9.4,3.5-17.6,4.8-27.9,4.8
+        c-29.2,0-41.4-18.2-41.4-39.1c0-23.5,14.3-39.9,38-39.9c26,0,36.5,19.6,36.5,44H428.6z M459.2,64c0-10.4-5.9-16.3-15.3-16.3
+        c-9.2,0-14.6,6.1-15.5,16.3H459.2z"></path>
+      <path d="M538,63c0-11.4-4.8-14.4-14.3-14.4c-2.9,0-9.1,0.9-12.6,2.2v10.1h-17.3V41.6c4.9-2.7,16.8-7.8,30.2-7.8
+        c20.2,0,33.1,7.1,33.1,29c0,12.4-0.4,22.8-0.7,33.5h8.5V111h-25.4v-4.6c0-4.9,0.3-7.5,1-10.4h-0.3c-5.1,11.4-12,16.8-24.7,16.8
+        c-17,0-25.3-10.1-25.3-21.9c0-10.8,7.2-17.9,15.2-20.8c7.7-2.7,17.9-3.5,32.6-3.5V63z M532.1,79c-16.5,0-21.7,3.5-21.7,10
+        c0,4.5,3.2,9.1,11.1,9.1c8.1,0,16.2-5.2,16.2-19.1H532.1z"></path>
+      <path d="M579.5,19.9l20.2-1.2v16.8h20.2v14.7h-20.2v33.6c0,10.7,2.7,13.3,11.1,13.3c2.7,0,6.1-0.9,9.8-2.3l-0.7,14.3
+        c-7.5,2.6-12.7,3.6-17.6,3.6c-14.9,0-22.8-6.9-22.8-20.2V50.3h-10.3V35.5h10.3V19.9z"></path>
+      <path d="M646.3,77.8c0.6,12,9.8,19.4,24,19.4c9.7,0,15.9-1.6,24.4-5.2l-1,16c-9.4,3.5-17.6,4.8-27.9,4.8
+        c-29.2,0-41.4-18.2-41.4-39.1c0-23.5,14.3-39.9,38-39.9c26,0,36.5,19.6,36.5,44H646.3z M676.9,64c0-10.4-5.9-16.3-15.3-16.3
+        c-9.2,0-14.6,6.1-15.5,16.3H676.9z"></path>
+      <path d="M761.8,14.7h-11.6V0H782v96.3h8.7V111h-28.4c0-5.5,0.6-9.8,1.7-14.6h-0.3c-4.6,10.5-13,16.3-25.7,16.3
+        c-16.6,0-30.8-12-30.8-34.5c0-20.6,10-44.5,42.2-44.5c3.5,0,8.4,0.6,12.4,1.7V14.7z M761.2,53c-2.7-1.4-8.4-2.7-12.9-2.7
+        c-14.6,0-20.1,11.6-20.1,23.2c0,11.8,5.6,21.9,15.5,21.9c10.7,0,17.5-9.5,17.5-21.1V53z"></path>
+      </g>
+</svg>
+</div></a>
+    </main>
+  </div>
+</div>
+<!--
+  end initial pre-JS UI
+-->
+
+    </div>
+
+    <script defer src="{{rootURL}}vendor/flickity.pkgd.min.js"></script>
+    <script defer type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script defer src="https://checkout.stripe.com/checkout.js"></script>
+    <script defer src="{{rootURL}}app.js"></script>
 
     {{content-for "body-footer"}}
   </body>
