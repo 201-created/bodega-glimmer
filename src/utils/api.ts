@@ -51,5 +51,11 @@ export function createCharge(chargeData) {
 }
 
 export function getItems() {
-  return self.fetch(URLS.GET_ITEMS).then(result => result.json());
+  return Promise.resolve().then(() => {
+    return { data: [
+      { id: "1", type: "item", attributes: { name: "Seat", price: 199, url: "/assets/images/seat.png" } },
+      { id: "2", type: "item", attributes: { name: "Touch", price: 199, url: "/assets/images/fingers.png" } },
+      { id: "3", type: "item", attributes: { name: "Space", price: 199, url: "/assets/images/space.png" } }
+    ]};
+  });
 }
