@@ -1,19 +1,21 @@
 import Cart from '../../../services/cart';
 import Component, { tracked } from '@glimmer/component';
 import trackService from '../../../utils/tracked';
+import { getItems } from '../../../utils/api';
 
 @trackService('cart')
+@trackService('status')
 export default class BodegaGlimmer extends Component {
   cart: Cart;
+  @tracked charge: Object;
 
   @tracked items = [];
+  @tracked currentRouteName = "index";
 
   constructor(options) {
     super(options);
-    self.fetch('https://api.shop-201.com/api/items').then(result => {
-      return result.json();
-    }).then(payload => {
-      this.items = payload.data.map(item => {
+    getItems().then(items => {
+      this.items = items.data.map(item => {
         return {
           ...item.attributes,
           id: item.id
@@ -22,27 +24,9 @@ export default class BodegaGlimmer extends Component {
     });
   }
 
-  /*
-   * The following is dummy development data.
-   */
-  /*
-  get items() {
-    return [
-      {
-        id: 'abc',
-        name: 'Sticker 1',
-        url: `https://lorempixel.com/400/200/abstract/1/`,
-        price: 199
-      },
-      {
-        id: '123',
-        name: 'Sticker 2',
-        url: `https://lorempixel.com/400/200/abstract/2/`,
-        price: 299
-      }
-    ];
+  goToIndex() {
+    this.currentRouteName = "index";
   }
-  */
 
   increment(lineItem) {
     this.cart.increment(lineItem);
@@ -50,5 +34,10 @@ export default class BodegaGlimmer extends Component {
 
   decrement(lineItem) {
     this.cart.decrement(lineItem);
+  }
+
+  didCompletePayment(charge) {
+    this.charge = charge;
+    this.currentRouteName = 'success';
   }
 }

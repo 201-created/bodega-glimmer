@@ -1,0 +1,42 @@
+<div>
+  <header class='modal-header bg-success text-white'>
+    <h1 class='modal-title' data-test-success-message>Purchase is on its way&hellip;</h1>
+  </header>
+
+  <div class='modal-body'>
+    <p>&hellip;along with your confirmation email.</p>
+
+    <h2 class='my-4'>Your order details:</h2>
+
+    <dl class='row pt-3'>
+      <dt class='col col-4'>Order ID:</dt>
+      <dd class='col col-8'>{{charge.id}}</dd>
+
+      <dt class='col col-4'>Description:</dt>
+      <dd class='col col-8' data-test-description={{charge.description}}>{{charge.description}}</dd>
+
+      <dt class='col col-4'>Total:</dt>
+      <dd class='col col-8'>${{price-in-dollars charge.price}}</dd>
+
+      <dt class='col col-4'>Name:</dt>
+      <dd class='col col-8'>{{charge.givenName}} {{charge.familyName}}</dd>
+
+      <dt class='col col-4'>Email:</dt>
+      <dd class='col col-8'>{{charge.emailAddress}}</dd>
+
+      <dt class='col col-4'>Address:</dt>
+      <dd class='col col-8 justify-self-end'>
+        {{#each charge.addressLines key="@identity" as |line|}}
+          {{line}}<br>
+        {{/each}}
+        {{charge.locality}}, {{charge.administrativeArea}} {{charge.postalCode}}
+      </dd>
+    </dl>
+  </div>
+  <footer class='modal-footer'>
+    <a href="mailto:hello@201-created.com?subject=Re: Studio 201 - OrderID: {{charge.id}}"
+       class="btn btn-secondary">Contact us</a>
+    <a href="#" onclick={{action goToIndex}} class="btn btn-success">Buy more</a>
+  </footer>
+
+</div>
