@@ -1,10 +1,6 @@
-const env = 'development';
-let API_BASE;
-if (env === "production") {
-  API_BASE = "https://api.shop-201.com/api";
-} else {
-  API_BASE = "https://localhost:3000/api";
-}
+import settings from './env-settings';
+
+const { apiBase: API_BASE } = settings;
 const URLS = {
   CREATE_CHARGE: `${API_BASE}/charges`,
   GET_ITEMS: `${API_BASE}/items`

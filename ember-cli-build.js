@@ -27,6 +27,10 @@ module.exports = function(defaults) {
         'https://api.shop-201.com/api/items'
       ],
       version: '3' // Changing the version will bust the cache
+    },
+    fingerprint: {
+      generateAssetMap: true,
+      exclude: ['images']
     }
   });
 
