@@ -31,6 +31,7 @@
     "ember-service-worker": "^0.6.7",
     "ember-service-worker-asset-cache": "^0.6.1",
     "ember-service-worker-cache-fallback": "^0.6.1",
+    "ember-web-app": "^2.0.0",
     "flickity": "2.0.8",
     "qunitjs": "^2.4.0",
     "typescript": "^2.2.2"
