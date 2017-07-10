@@ -4,6 +4,7 @@ import Cart from '../../../services/cart';
 import StripeCheckoutService from '../../../services/stripe-checkout';
 import Component, { tracked } from '@glimmer/component';
 import trackService from '../../../utils/tracked';
+import { createCharge } from '../../../utils/api';
 
 @trackService('online')
 @trackService('status')
@@ -37,13 +38,49 @@ export default class StripeCheckout extends Component {
       'Go online to purchase';
   }
 
+  _shippingAddress(addresses) {
+    let names = addresses.shipping_name.split(' ');
+    let givenName = names[0];
+    let familyName = names[names.length - 1];
+
+    return {
+      givenName,
+      familyName,
+      addressLines: [ addresses.shipping_address_line1 ],
+      locality: addresses.shipping_address_city,
+      administrativeArea: addresses.shipping_address_state,
+      postalCode: addresses.shipping_address_zip,
+      countryCode: addresses.shipping_address_country_code
+    };
+  }
+
   _saveCharge(token, addresses) {
-    this.cart.clear();
+    let item = this.args.item;
+    let price = item.price;
+
+    let shippingAddress = this._shippingAddress(addresses);
+    let params = Object.assign({}, shippingAddress, {
+      token: token.id,
+      emailAddress: token.email,
+      price,
+      item,
+      description: `201 Created Sticker: ${item.name}`
+    });
+
+    let chargeData = params;
+
+    createCharge(chargeData).then((payload) => {
+      this.cart.clear();
+
+      // route to success, passing in the chargeData
+      this.args.didCompletePayment(payload);
+    }).catch(e => {
+      window.alert('There was an error with your purchase');
+      // set and display error message "Purchase Failed"
+    });
   }
 
   checkout() {
-    this.status.errorMessage = null;
-
     let tokenCallback = this._saveCharge.bind(this);
     this._handler = this.stripeCheckout.createHandler(tokenCallback);
 
@@ -59,39 +96,4 @@ export default class StripeCheckout extends Component {
       this._handler.close();
     }
   }
-
 }
-
-/*
-  errorMessage: computed.alias('status.errorMessage'),
-
-  title: computed('online.isOnline', function() {
-    return !this.get('online.isOnline') ?
-      'Checkout is not available when you are offline' :
-      'Pay with Credit Card';
-  }),
-
-  willDestroyElement() {
-    if (this.handler) {
-      this.handler.close();
-    }
-
-    this._super(...arguments);
-  },
-
-  actions: {
-    checkout() {
-      this.set('errorMessage', null);
-
-      let tokenCallback = this._saveCharge.bind(this);
-      this.handler = this.get('stripeCheckout').createHandler(tokenCallback);
-
-      this.handler.open({
-        name: '201 Created, Inc',
-        description: '201 Created Sticker',
-        amount: this.get('item.price')
-      });
-    }
-  }
-});
-*/

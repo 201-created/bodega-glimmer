@@ -5,11 +5,15 @@
 
   <div class='d-flex flex-column flex-sm-row col no-gutters p-0'>
     <main class='app-body d-flex flex-column col'>
-      <items-slider class='items-slider col p-0' as |flickity|>
-        {{#each items key="id" as |item|}}
-          <show-item @item={{item}} @afterRender={{flickity}} class='item'></show-item>
-        {{/each}}
-      </items-slider>
+      {{#if (eq currentRouteName "index")}}
+        <items-slider class='items-slider col p-0' as |flickity|>
+          {{#each items key="id" as |item|}}
+            <show-item @item={{item}} @afterRender={{flickity}} class='item'></show-item>
+          {{/each}}
+        </items-slider>
+      {{else if (eq currentRouteName "success")}}
+        <bodega-success @charge={{charge}} @goToIndex={{action goToIndex}}></bodega-success>
+      {{/if}}
 
       <a class='colophon' href="https://www.201-created.com/"><span class='sr-only'>201 Created</span><svg-logo></svg-logo></a>
     </main>
@@ -18,7 +22,8 @@
       <bodega-cart class='col p-1'
                     @order={{cart.order}}
                     @increment={{action increment}}
-                    @decrement={{action decrement}}></bodega-cart>
+                    @decrement={{action decrement}}
+                    @didCompletePayment={{action didCompletePayment}}></bodega-cart>
     </footer>
   </div>
 </div>
