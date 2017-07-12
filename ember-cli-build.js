@@ -28,6 +28,13 @@ module.exports = function(defaults) {
       ],
       version: '3' // Changing the version will bust the cache
     },
+    'ember-cli-uglify': {
+      uglify: {
+        mangle: {
+          safari10: true
+        }
+      }
+    },
     fingerprint: {
       generateAssetMap: true,
       exclude: ['images']
