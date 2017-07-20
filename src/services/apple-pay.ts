@@ -4,7 +4,7 @@ import loadScript from './-utils/load-script';
 
 export default class ApplePay extends Service {
 
-  @tracked isAvailable = self.ApplePaySession && self.ApplePaySession.canMakePayments();
+  @tracked isAvailable = self.location.protocol === 'https:' && self.ApplePaySession && self.ApplePaySession.canMakePayments();
 
   revokeAvailability(message = 'Sorry, ApplePay is not available on this device.') {
     this.isAvailable = false;
