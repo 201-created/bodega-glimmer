@@ -1,27 +1,42 @@
 import Service from './-utils/service';
 import { tracked } from '@glimmer/component';
+import loadScript from './-utils/load-script';
 
 export default class ApplePay extends Service {
 
-  @tracked isAvailable = false;
+  @tracked isAvailable = self.ApplePaySession && self.ApplePaySession.canMakePayments();
 
-  constructor(options) {
-    super(options);
-    if (self.Stripe && self.Stripe.applePay) {
-      self.Stripe.applePay.checkAvailability((result) => {
-        this.isAvailable = result;
-        this.notify();
-      });
-    }
+  revokeAvailability(message = 'Sorry, ApplePay is not available on this device.') {
+    this.isAvailable = false;
+    this.notify();
+    throw new Error(message);
   }
 
   charge(paymentRequest) {
-    return new Promise((resolve, reject) => {
-      self.Stripe.applePay.buildSession(
-        paymentRequest,
-        buildSuccessHandler(resolve),
-        reject
-      ).begin();
+    return loadScript('https://js.stripe.com/v2/').then(() => {
+      if (!self.Stripe.applePay) {
+        this.revokeAvailability();
+      }
+
+      return new Promise(resolve => {
+        self.Stripe.applePay.checkAvailability((result) => {
+          if (!result) {
+            this.revokeAvailability();
+          }
+          resolve();
+        });
+      });
+    }).then(() => {
+      return new Promise((resolve, reject) => {
+        self.Stripe.applePay.buildSession(
+          paymentRequest,
+          buildSuccessHandler(resolve),
+          reject
+        ).begin();
+      });
+    }).catch(e => {
+      self.alert(`There was an error in the checkout process: ${e.message}`);
+      throw e;
     });
   }
 }
