@@ -20,6 +20,13 @@
     <link rel="stylesheet" href="{{rootURL}}app.css">
 
     {{content-for "head-footer"}}
+
+    <script defer src="{{rootURL}}vendor/flickity.pkgd.min.js"></script>
+    <script defer src="{{rootURL}}app.js"></script>
+
+    <link rel="preload" href="/assets/images/seat.png" as="image" />
+    <link rel="preload" href="/assets/images/fingers.png" as="image" />
+    <link rel="preload" href="/assets/images/space.png" as="image" />
   </head>
   <body>
     {{content-for "body"}}
@@ -95,9 +102,6 @@
 -->
 
     </div>
-
-    <script defer src="{{rootURL}}vendor/flickity.pkgd.min.js"></script>
-    <script defer src="{{rootURL}}app.js"></script>
 
     {{content-for "body-footer"}}
   </body>
