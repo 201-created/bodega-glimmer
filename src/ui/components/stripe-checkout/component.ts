@@ -82,12 +82,16 @@ export default class StripeCheckout extends Component {
 
   checkout() {
     let tokenCallback = this._saveCharge.bind(this);
-    this._handler = this.stripeCheckout.createHandler(tokenCallback);
-
-    this._handler.open({
-      name: '201 Created, Inc',
-      description: '201 Created Sticker',
-      amount: this.args.item.price
+    this.stripeCheckout.createHandler(tokenCallback).then(handler => {
+      this._handler = handler;
+      this._handler.open({
+        name: '201 Created, Inc',
+        description: '201 Created Sticker',
+        amount: this.args.item.price
+      });
+    }).catch(e => {
+      self.alert(`There was an error beginning the checkout process: ${e.message}`);
+      throw e;
     });
   }
 
