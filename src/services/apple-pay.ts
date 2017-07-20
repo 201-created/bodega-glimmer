@@ -9,19 +9,20 @@ export default class ApplePay extends Service {
   revokeAvailability(message = 'Sorry, ApplePay is not available on this device.') {
     this.isAvailable = false;
     this.notify();
-    throw new Error(message);
   }
 
   charge(paymentRequest) {
     return loadScript('https://js.stripe.com/v2/').then(() => {
       if (!self.Stripe.applePay) {
         this.revokeAvailability();
+        throw new Error('Sorry, ApplePay is not available on this device');
       }
 
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         self.Stripe.applePay.checkAvailability((result) => {
           if (!result) {
             this.revokeAvailability();
+            reject(new Error('Sorry, ApplePay is not available on this device'));
           }
           resolve();
         });
