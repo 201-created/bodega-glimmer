@@ -41,6 +41,9 @@ module.exports = function(defaults) {
     fingerprint: {
       generateAssetMap: true,
       exclude: ['images']
+    },
+    'ember-service-worker': {
+      registrationStrategy: 'async'
     }
   });
 
