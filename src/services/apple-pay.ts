@@ -12,8 +12,13 @@ export default class ApplePay extends Service {
       console.log('eagerly loaded');
       if (!self.Stripe.applePay) {
         this.revokeAvailability();
-        throw new Error('Sorry, ApplePay is not supported on this device');
       }
+      self.Stripe.applePay.checkAvailability((result) => {
+        console.log('checked availability, got',result);
+        if (!result) {
+          this.revokeAvailability();
+        }
+      });
     });
   }
 
@@ -23,44 +28,28 @@ export default class ApplePay extends Service {
   }
 
   charge(paymentRequest) {
-   return new Promise((resolve, reject) => {
-      self.Stripe.applePay.checkAvailability((result) => {
-        if (!result) {
-          debugger;
-          this.revokeAvailability();
-          reject(new Error('Sorry, ApplePay is not available on this device'));
+    return new Promise((resolve, reject) => {
+      self.Stripe.applePay.buildSession(
+        paymentRequest,
+        buildApplePaySuccessHandler(resolve, reject),
+        (error) => {
+          console.log('error with stripe apple pay',error);
+          throw error;
         }
-        resolve();
-      });
-    }).then(() => {
-      return new Promise((resolve, reject) => {
-        self.Stripe.applePay.buildSession(
-          paymentRequest,
-          buildSuccessHandler(resolve),
-          reject
-        ).begin();
-      });
-    }).catch(e => {
-      self.alert(`There was an error in the checkout process: ${e.message}`);
-      throw e;
+      ).begin();
     });
   }
 }
 
-function buildSuccessHandler(resolve) {
+function buildApplePaySuccessHandler(resolve, reject) {
   return function successHandlerResolution(result, completion) {
-    resolve({
-      result,
-
-      notify: {
-        success() {
-          completion(self.ApplePaySession.STATUS_SUCCESS);
-        },
-
-        failure() {
-          completion(self.ApplePaySession.STATUS_FAILURE);
-        }
-      }
-    });
+    console.log('success!',result,completion);
+    if (result) {
+      completion(self.ApplePaySession.STATUS_SUCCESS);
+      resolve();
+    } else {
+      completion(self.ApplePaySession.STATUS_FAILURE);
+      reject();
+    }
   }
 }
