@@ -6,7 +6,10 @@ const MergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   let app = new GlimmerApp(defaults, {
-    // Add options here
+    minifyHTML: {
+      enabled: true,
+      htmlFiles: ['index.html']
+    },
     'asset-cache': {
       include: [
         'assets/**/*',
