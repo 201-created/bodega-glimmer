@@ -47,7 +47,7 @@ export default class ApplePayButton extends Component {
 
     this.applePay.charge(paymentRequest).then(({ result, notify }) => {
       console.log('applePay.charge.then:',result,notify);
-      let params = assign({}, result.shippingContact, {
+      let params = Object.assign({}, result.shippingContact, {
         token: result.token.id,
         price,
         item,
@@ -65,7 +65,6 @@ export default class ApplePayButton extends Component {
       this.args.didCompletePayment(payload);
     }).catch((e) => {
       console.log('error',e);
-      this.errorMessage = 'Purchase failed';
       this._notify.failure();
     }).then(() => {
       this._notify = null;
