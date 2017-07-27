@@ -2510,9 +2510,9 @@ ember-cli@^2.14.0:
     walk-sync "^0.3.0"
     yam "0.0.22"
 
-ember-inline-css@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/ember-inline-css/-/ember-inline-css-0.0.6.tgz#504dcdf1f44170bd5423197fa63c36577c638ef8"
+ember-inline-css@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ember-inline-css/-/ember-inline-css-0.0.3.tgz#55c3d10025f14240737c6712a805cbd9b1131252"
   dependencies:
     broccoli-merge-trees "^2.0.0"
     broccoli-plugin "^1.3.0"
