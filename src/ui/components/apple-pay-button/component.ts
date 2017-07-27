@@ -63,7 +63,8 @@ export default class ApplePayButton extends Component {
 
       // route to success, passing in the chargeData
       this.args.didCompletePayment(payload);
-    }).catch(() => {
+    }).catch((e) => {
+      console.log('error',e);
       this.errorMessage = 'Purchase failed';
       this._notify.failure();
     }).then(() => {

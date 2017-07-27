@@ -47,6 +47,7 @@ export function createCharge(chargeData) {
     headers: { 'Content-Type': 'application/json'},
     body: serializeCharge(chargeData)
   };
+  console.log('fetching:',URLS.CREATE_CHARGE,opts);
   return self.fetch(URLS.CREATE_CHARGE, opts).then(result => result.json()).then(deserializeCharge);
 }
 
